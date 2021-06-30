@@ -17,24 +17,13 @@ const Theme = {
   const checkbox = document.querySelector('#theme-switch-toggle');
   
   checkbox.addEventListener('change', clickOnCheckbox)
-  
-  if (localStorage.getItem('theme-type') === Theme.DARK) {
-      bodyColor.classList.add(Theme.DARK)
-      localStorage.setItem('theme-type', Theme.DARK)
-      checkbox.setAttribute('checked', true)
-  } else {
-      bodyColor.classList.add(Theme.LIGHT)
-  }  
+
+  const theme = localStorage.getItem('theme-type') || Theme.LIGHT;
+  bodyColor.classList.add(theme);
+  checkbox.checked = theme === Theme.DARK;
   
   function clickOnCheckbox() {
-      if (bodyColor.classList.value === Theme.LIGHT) {
           bodyColor.classList.toggle(Theme.DARK)
           bodyColor.classList.toggle(Theme.LIGHT)
           localStorage.setItem('theme-type', bodyColor.classList.value)
-      } else {
-          bodyColor.classList.toggle(Theme.DARK)
-          bodyColor.classList.toggle(Theme.LIGHT)
-  
-          localStorage.setItem('theme-type', bodyColor.classList.value)
-      }
   }
